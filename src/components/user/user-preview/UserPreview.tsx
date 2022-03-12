@@ -1,14 +1,11 @@
 /* eslint-disable no-return-assign */
-/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable no-param-reassign */
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FormOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import {
-  Form, Input, Button, Modal,
-} from 'antd';
+import ModalEdit from '../../form/modal/ModalEdit';
 import { fetchGetUsers } from '../../../store/users/usersActions';
 import { randomInteger } from '../../../utils';
 import { changesUserData } from '../../../store/users/usersSlise';
@@ -29,6 +26,7 @@ const UserPreview:FC<UserPreviewProps> = ({ id, name, age }) => {
   const { usersList } = usersData;
   const [newAge, setNewAge] = useState(age);
   const [newName, setNewName] = useState(name);
+
   // генерирует ссылку на рандомный аватар
   const randonAvatar = `https://i.pravatar.cc/150?img=${randomInteger(1, 70)}`;
 
@@ -40,16 +38,17 @@ const UserPreview:FC<UserPreviewProps> = ({ id, name, age }) => {
     setIsModalVisible(true);
   };
 
-  const onCancel = () => {
+  const onCloseModal = () => {
     setIsModalVisible(false);
   };
 
-  const onFinish = (val:any) => {
+  const updateUserData = (val:any) => {
     if (val.age !== age || val.name !== name) {
       const newObj = val;
       newObj.id = id;
       newObj.age = Number(val.age);
 
+      // запрос на сервер на изменение данный пользоватлея
       apiService.putUserUpdate(id, newObj).then((res) => {
         if (res.name) {
           setNewName(res.name);
@@ -69,58 +68,22 @@ const UserPreview:FC<UserPreviewProps> = ({ id, name, age }) => {
   };
 
   const deleteUser = () => {
+    // запрос на сервер с удалением пользователя
     apiService.deleteUser(id).then(() => {
+      // получает обновленный список пользоватлей
       dispath(fetchGetUsers(''));
     });
   };
 
-  // форма заполненная данными
-  const CompletedForm = () => {
-    const [fields] = useState([
-      {
-        name: ['name'],
-        value: name,
-      },
-      {
-        name: ['age'],
-        value: age,
-      },
-    ]);
-
-    return (
-      <Form
-        size="middle"
-        onFinish={onFinish}
-        fields={fields}
-      >
-
-        <Form.Item name="name" label="Name:">
-          <Input type="text" />
-        </Form.Item>
-
-        <Form.Item name="age" label="Age:">
-          <Input type="number" />
-        </Form.Item>
-
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Save
-          </Button>
-        </Form.Item>
-      </Form>
-    );
-  };
-
   // модальное окно
   const modal = (
-    <Modal
-      title="Change user data"
-      visible={isModalVisible}
-      onCancel={onCancel}
-      footer={false}
-    >
-      <CompletedForm />
-    </Modal>
+    <ModalEdit
+      onCloseModal={onCloseModal}
+      name={name}
+      age={age}
+      isModalVisible={isModalVisible}
+      updateUserData={updateUserData}
+    />
   );
 
   const userPreview = (

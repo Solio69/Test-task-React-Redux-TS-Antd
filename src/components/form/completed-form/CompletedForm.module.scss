@@ -1,0 +1,22 @@
+.editForm{
+    // max-width: 300px;
+    .formItem{
+        margin-bottom: 10px;
+        font-size: 15px;
+        display: flex;
+        font-weight: 500;
+        align-items: center;
+        // justify-content: space-between;
+    
+        label{
+            display: block;
+            width: 70px;
+        }
+    
+        input{
+            width: 280px;
+        }
+    }
+    
+
+}
