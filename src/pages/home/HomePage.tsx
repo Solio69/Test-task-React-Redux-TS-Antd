@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,10 +14,7 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks/redux';
 
 const HomePage:FC = () => {
   const dispath = useAppDispatch();
-  const usersData = useAppSelector((state) => state.usersReduser);
-  console.log(usersData);
-  // const usersData = useStateUsers();
-  const { searchStr, elementsOnPage } = usersData;
+  const { searchStr, elementsOnPage } = useAppSelector((state) => state.usersReduser);
 
   // action creator
   const boundFetchGetUsers = () => dispath(fetchGetUsers(searchStr));

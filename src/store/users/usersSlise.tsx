@@ -1,5 +1,5 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchGetUsers } from './usersActions';
 import { IUser } from '../../types/types';
@@ -31,34 +31,32 @@ export const usersSlise = createSlice({
       state.searchStr = action.payload;
     },
 
-    sortingUserList (state, action) {
+    sortingUserList (state, action:PayloadAction<'sortUp' | 'sortDown' | ''>) {
       state.isSorting = action.payload;
     },
 
-    changesElementsOnPage (state, action) {
+    changesElementsOnPage (state, action:PayloadAction<string>) {
       state.elementsOnPage = action.payload;
     },
 
-    changesMaxPages (state, action) {
+    changesMaxPages (state, action:PayloadAction<number>) {
       state.maxPages = action.payload;
     },
 
-    changesNumPage (state, action) {
+    changesNumPage (state, action:PayloadAction<number>) {
       state.activePage = action.payload;
     },
 
-    changesUserData (state, action) {
+    changesUserData (state, action:PayloadAction<IUser[]>) {
       state.usersList = action.payload;
     },
   },
 
   extraReducers: {
     [fetchGetUsers.pending.type]: (state) => {
-      // console.log('pending', action.payload)
     },
 
     [fetchGetUsers.fulfilled.type]: (state, action) => {
-      // console.log('fulfilled', action);
       state.usersList = action.payload;
       const lenghtList = action.payload.length;
       // если elementsOnPage приводится к числу, то считает максимальное кол-во страниц

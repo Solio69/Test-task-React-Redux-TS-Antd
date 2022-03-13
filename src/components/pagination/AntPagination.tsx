@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, MouseEvent, useEffect } from 'react';
 import { Pagination } from 'antd';
 import { useAppSelector, useAppDispatch } from '../../store/hooks/redux';
 import { changesElementsOnPage, changesNumPage, changesMaxPages } from '../../store/users/usersSlise';
@@ -31,12 +30,10 @@ const AntPagination:FC = () => {
     dispath(changesNumPage(page));
   };
 
-  const onClick = (event:React.MouseEvent<HTMLButtonElement>) => {
+  const onClick = (event:MouseEvent<HTMLButtonElement>) => {
     const value = event.currentTarget.innerText;
     dispath(changesElementsOnPage(value));
   };
-
-  console.log(usersData);
 
   return (
     <div className={styles.pagination}>

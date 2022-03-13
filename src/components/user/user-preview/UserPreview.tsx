@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-return-assign */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { IUser } from '../../../types/types';
 import ModalEdit from '../../form/modal/ModalEdit';
 import { fetchGetUsers } from '../../../store/users/usersActions';
 import { randomInteger } from '../../../utils';
 import { changesUserData } from '../../../store/users/usersSlise';
-import { useAppSelector } from '../../../store/hooks/redux';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks/redux';
 import { apiService } from '../../../services/apiService';
 import styles from './UserPreview.module.scss';
 import 'antd/es/modal/style/css';
@@ -22,9 +21,8 @@ interface UserPreviewProps {
 }
 
 const UserPreview:FC<UserPreviewProps> = ({ id, name, age }) => {
-  const dispath = useDispatch();
-  const usersData = useAppSelector((state) => state.usersReduser);
-  const { usersList } = usersData;
+  const dispath = useAppDispatch();
+  const { usersList } = useAppSelector((state) => state.usersReduser);
   const [newAge, setNewAge] = useState(age);
   const [newName, setNewName] = useState(name);
 
@@ -43,26 +41,25 @@ const UserPreview:FC<UserPreviewProps> = ({ id, name, age }) => {
     setIsModalVisible(false);
   };
 
-  const updateUserData = (val:any) => {
-    if (val.age !== age || val.name !== name) {
-      const newObj = val;
-      newObj.id = id;
-      newObj.age = Number(val.age);
+  const updateUserData = (value:{ age:number, name:string }) => {
+    if (value.age !== age || value.name !== name) {
+      const newObj = value;
 
       // запрос на сервер на изменение данный пользоватлея
-      apiService.putUserUpdate(id, newObj).then((res) => {
-        if (res.name) {
-          setNewName(res.name);
-        }
-        if (res.age) {
-          setNewAge(res.age);
-        }
+      apiService.putUserUpdate(id, newObj)
+        .then((res:IUser) => {
+          if (res.name) {
+            setNewName(res.name);
+          }
+          if (res.age) {
+            setNewAge(res.age);
+          }
 
-        // передает в стор список с измененным элементом
-        const newUserList = [...usersList].map((el:any) => (el.id === res.id ? el = res : el));
+          // передает в стор список с измененным элементом
+          const newUserList:IUser[] = [...usersList].map((el:IUser) => (el.id === res.id ? el = res : el));
 
-        dispath(changesUserData(newUserList));
-      });
+          dispath(changesUserData(newUserList));
+        });
     }
 
     setIsModalVisible(false);

@@ -3,14 +3,14 @@ import { Form, Input, Button } from 'antd';
 import styles from './CompletedForm.module.scss';
 
 interface CompletedFormProps{
-  age?:number
-  name?:string
-  updateUserData:(val:any)=>void
+  age?: number
+  name?: string
+  updateUserData:(value:{ age:number, name:string }) => void
 }
 
 const CompletedForm:FC<CompletedFormProps> = ({ name, age, updateUserData }) => {
-  const onFinish = (val:any) => {
-    updateUserData(val);
+  const onFinish = (value:{ age:number, name:string }) => {
+    updateUserData(value);
   };
 
   // если данные были переданы то использует их

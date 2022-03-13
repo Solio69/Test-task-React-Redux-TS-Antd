@@ -3,11 +3,11 @@ import { Modal } from 'antd';
 import CompletedForm from '../completed-form';
 
 interface ModalEditProps{
-  age?:number
-  name?:string
-  updateUserData:(val:any)=>void
-  isModalVisible:boolean
-  onCloseModal:()=>void
+  age?: number
+  name?: string
+  updateUserData:(value:{ age:number, name:string }) => void
+  isModalVisible: boolean
+  onCloseModal:() => void
 }
 
 const ModalEdit:FC<ModalEditProps> = ({

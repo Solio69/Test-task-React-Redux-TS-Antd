@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, ChangeEvent } from 'react';
-import { useDispatch } from 'react-redux';
 import { Input } from 'antd';
+import { useAppDispatch } from '../../store/hooks/redux';
 import { changeSearchStr } from '../../store/users/usersSlise';
 import styles from './AntInput.module.scss';
 import 'antd/es/input/style/css';
 
 const AntInput:FC = () => {
-  const dispath = useDispatch();
+  const dispath = useAppDispatch();
 
   // получит значение из input и передаст его в stor redux
   const onChange = (event:ChangeEvent<HTMLInputElement>):void => {
