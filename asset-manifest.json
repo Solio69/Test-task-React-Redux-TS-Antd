@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Test-task-React-Redux-TS-Antd-/static/css/main.686c1f8c.chunk.css",
-    "main.js": "/Test-task-React-Redux-TS-Antd-/static/js/main.58af400b.chunk.js",
-    "main.js.map": "/Test-task-React-Redux-TS-Antd-/static/js/main.58af400b.chunk.js.map",
+    "main.css": "/Test-task-React-Redux-TS-Antd-/static/css/main.524a6b0c.chunk.css",
+    "main.js": "/Test-task-React-Redux-TS-Antd-/static/js/main.2606ac19.chunk.js",
+    "main.js.map": "/Test-task-React-Redux-TS-Antd-/static/js/main.2606ac19.chunk.js.map",
     "runtime-main.js": "/Test-task-React-Redux-TS-Antd-/static/js/runtime-main.ddcb3e1d.js",
     "runtime-main.js.map": "/Test-task-React-Redux-TS-Antd-/static/js/runtime-main.ddcb3e1d.js.map",
-    "static/css/2.baa585d6.chunk.css": "/Test-task-React-Redux-TS-Antd-/static/css/2.baa585d6.chunk.css",
-    "static/js/2.06d805f9.chunk.js": "/Test-task-React-Redux-TS-Antd-/static/js/2.06d805f9.chunk.js",
-    "static/js/2.06d805f9.chunk.js.map": "/Test-task-React-Redux-TS-Antd-/static/js/2.06d805f9.chunk.js.map",
+    "static/css/2.72e78290.chunk.css": "/Test-task-React-Redux-TS-Antd-/static/css/2.72e78290.chunk.css",
+    "static/js/2.7533a106.chunk.js": "/Test-task-React-Redux-TS-Antd-/static/js/2.7533a106.chunk.js",
+    "static/js/2.7533a106.chunk.js.map": "/Test-task-React-Redux-TS-Antd-/static/js/2.7533a106.chunk.js.map",
     "index.html": "/Test-task-React-Redux-TS-Antd-/index.html",
-    "static/css/2.baa585d6.chunk.css.map": "/Test-task-React-Redux-TS-Antd-/static/css/2.baa585d6.chunk.css.map",
-    "static/css/main.686c1f8c.chunk.css.map": "/Test-task-React-Redux-TS-Antd-/static/css/main.686c1f8c.chunk.css.map",
-    "static/js/2.06d805f9.chunk.js.LICENSE.txt": "/Test-task-React-Redux-TS-Antd-/static/js/2.06d805f9.chunk.js.LICENSE.txt",
+    "static/css/2.72e78290.chunk.css.map": "/Test-task-React-Redux-TS-Antd-/static/css/2.72e78290.chunk.css.map",
+    "static/css/main.524a6b0c.chunk.css.map": "/Test-task-React-Redux-TS-Antd-/static/css/main.524a6b0c.chunk.css.map",
+    "static/js/2.7533a106.chunk.js.LICENSE.txt": "/Test-task-React-Redux-TS-Antd-/static/js/2.7533a106.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/Test-task-React-Redux-TS-Antd-/static/media/HelveticaNeueCyr-Roman.84fb498e.otf"
   },
   "entrypoints": [
     "static/js/runtime-main.ddcb3e1d.js",
-    "static/css/2.baa585d6.chunk.css",
-    "static/js/2.06d805f9.chunk.js",
-    "static/css/main.686c1f8c.chunk.css",
-    "static/js/main.58af400b.chunk.js"
+    "static/css/2.72e78290.chunk.css",
+    "static/js/2.7533a106.chunk.js",
+    "static/css/main.524a6b0c.chunk.css",
+    "static/js/main.2606ac19.chunk.js"
   ]
 }
