@@ -1,18 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-return-assign */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FormOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import ModalEdit from '../../form/modal/ModalEdit';
 import { fetchGetUsers } from '../../../store/users/usersActions';
 import { randomInteger } from '../../../utils';
 import { changesUserData } from '../../../store/users/usersSlise';
-import { useStateUsers } from '../../../store/selectors';
+import { useAppSelector } from '../../../store/hooks/redux';
 import { apiService } from '../../../services/apiService';
 import styles from './UserPreview.module.scss';
 import 'antd/es/modal/style/css';
+import ButtonInUserPreview, { ButtonInUserPreviewVariant } from '../../buttons/button-in-userPreview/ButtonInUserPreview';
 
 interface UserPreviewProps {
   id:string,
@@ -22,7 +23,7 @@ interface UserPreviewProps {
 
 const UserPreview:FC<UserPreviewProps> = ({ id, name, age }) => {
   const dispath = useDispatch();
-  const usersData = useStateUsers();
+  const usersData = useAppSelector((state) => state.usersReduser);
   const { usersList } = usersData;
   const [newAge, setNewAge] = useState(age);
   const [newName, setNewName] = useState(name);
@@ -105,23 +106,15 @@ const UserPreview:FC<UserPreviewProps> = ({ id, name, age }) => {
           {newAge}
         </div>
       </div>
-      <div className={styles.userButton}>
-        <button
-          type="button"
-          className={styles.userButtonEdit}
-          onClick={showModal}
-        >
-          <FormOutlined />
-          Edit
-        </button>
-        <button
-          type="button"
-          className={styles.userButtonDelete}
-          onClick={deleteUser}
-        >
-          <CloseCircleOutlined />
-          Delete
-        </button>
+      <div className={styles.buttonInList}>
+        <ButtonInUserPreview
+          variant={ButtonInUserPreviewVariant.edit}
+          onClickFunc={showModal}
+        />
+        <ButtonInUserPreview
+          variant={ButtonInUserPreviewVariant.delete}
+          onClickFunc={deleteUser}
+        />
       </div>
     </li>
   );

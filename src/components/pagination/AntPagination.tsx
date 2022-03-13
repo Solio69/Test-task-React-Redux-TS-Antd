@@ -1,14 +1,14 @@
-import React, { FC, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { FC, useEffect, useState } from 'react';
 import { Pagination } from 'antd';
-import { useStateUsers } from '../../store/selectors';
+import { useAppSelector, useAppDispatch } from '../../store/hooks/redux';
 import { changesElementsOnPage, changesNumPage, changesMaxPages } from '../../store/users/usersSlise';
 import styles from './AntPagination.module.scss';
 import 'antd/es/pagination/style/css';
 
 const AntPagination:FC = () => {
-  const dispath = useDispatch();
-  const usersData = useStateUsers();
+  const dispath = useAppDispatch();
+  const usersData = useAppSelector((state) => state.usersReduser);
   const {
     usersList, maxPages, elementsOnPage, activePage,
   } = usersData;
@@ -16,14 +16,16 @@ const AntPagination:FC = () => {
   useEffect(() => {
     const lenghtList = usersList.length;
     // если elementsOnPage приводится к числу, то считает максимальное кол-во страниц
-    const elementsOnPageNum = (Number(elementsOnPage));
-    if (elementsOnPageNum) {
-      dispath(changesMaxPages(Math.ceil(lenghtList / elementsOnPage)));
-    } else {
-      // если нет, максимальное кол-во страниц 0
-      dispath(changesMaxPages(0));
+    if (maxPages) {
+      const elementsOnPageNum = (Number(elementsOnPage));
+      if (elementsOnPageNum) {
+        dispath(changesMaxPages(Math.ceil(lenghtList / elementsOnPageNum)));
+      } else {
+        // если нет, максимальное кол-во страниц 0
+        dispath(changesMaxPages(0));
+      }
     }
-  }, [elementsOnPage]);
+  }, [elementsOnPage, dispath]);
 
   const onChange = (page: number) => {
     dispath(changesNumPage(page));
@@ -33,6 +35,8 @@ const AntPagination:FC = () => {
     const value = event.currentTarget.innerText;
     dispath(changesElementsOnPage(value));
   };
+
+  console.log(usersData);
 
   return (
     <div className={styles.pagination}>

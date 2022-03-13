@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { FC } from 'react';
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../store/hooks/redux';
 import { sortingUserList } from '../../store/users/usersSlise';
 
 import styles from './Sorting.module.scss';
 
 const Sorting:FC = () => {
-  const dispath = useDispatch();
+  const dispath = useAppDispatch();
 
   const sortUp = () => {
     dispath(sortingUserList('sortUp'));

@@ -1,10 +1,11 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchGetUsers } from './usersActions';
+import { IUser } from '../../types/types';
 
 interface InitialStateTypes {
-  usersList: [],
+  usersList: IUser[],
   searchStr:string,
   isSorting:'sortUp' | 'sortDown' | '',
   maxPages:number,
@@ -21,12 +22,12 @@ const initialState: InitialStateTypes = {
   elementsOnPage: '5',
 };
 
-const usersSlise = createSlice({
+export const usersSlise = createSlice({
   name: 'users',
   initialState,
 
   reducers: {
-    changeSearchStr (state, action) {
+    changeSearchStr (state, action:PayloadAction<string>) {
       state.searchStr = action.payload;
     },
 

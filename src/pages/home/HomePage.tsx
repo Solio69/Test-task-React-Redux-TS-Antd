@@ -3,17 +3,20 @@ import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { debounce } from 'lodash';
 import { fetchGetUsers } from '../../store/users/usersActions';
-import { useStateUsers } from '../../store/selectors';
+// import { useStateUsers } from '../../store/hooks';
 import UsersList from '../../components/users-list';
 import AntInput from '../../components/input';
 import Sorting from '../../components/sorting';
 import AntPagination from '../../components/pagination';
 import styles from './HomePage.module.scss';
+import { useAppSelector, useAppDispatch } from '../../store/hooks/redux';
 
 const HomePage:FC = () => {
-  const dispath = useDispatch();
-  const usersData = useStateUsers();
-  const { usersList, searchStr, elementsOnPage } = usersData;
+  const dispath = useAppDispatch();
+  const usersData = useAppSelector((state) => state.usersReduser);
+  console.log(usersData);
+  // const usersData = useStateUsers();
+  const { searchStr, elementsOnPage } = usersData;
 
   // action creator
   const boundFetchGetUsers = () => dispath(fetchGetUsers(searchStr));

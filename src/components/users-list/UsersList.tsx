@@ -1,10 +1,12 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC } from 'react';
-import { useStateUsers } from '../../store/selectors';
+import { useAppSelector } from '../../store/hooks/redux';
 import UserPreview from '../user/user-preview';
 import styles from './UsersList.module.scss';
 
 const UsersList:FC = () => {
-  const usersData = useStateUsers();
+  const usersData = useAppSelector((state) => state.usersReduser);
   const {
     usersList, isSorting, elementsOnPage, activePage,
   } = usersData;
@@ -13,9 +15,9 @@ const UsersList:FC = () => {
   const sortingList = () => {
     const newList = [...usersList];
     if (isSorting === 'sortDown') {
-      return newList.sort((a:any, b:any) => (a.age < b.age ? 1 : -1));
+      return newList.sort((nex, prev) => (nex.age < prev.age ? 1 : -1));
     } if (isSorting === 'sortUp') {
-      return newList.sort((a:any, b:any) => (a.age > b.age ? 1 : -1));
+      return newList.sort((nex, prev) => (nex.age > prev.age ? 1 : -1));
     }
 
     return newList;
@@ -25,9 +27,10 @@ const UsersList:FC = () => {
   function getPartList () {
     const oldArr = [...sortingList()];
     let newArr = [];
-    if (Number(elementsOnPage)) {
-      const oneElem = ((activePage - 1) * elementsOnPage);
-      newArr = oldArr.splice(oneElem, elementsOnPage);
+    const elementsOnPageNum = Number(elementsOnPage);
+    if (elementsOnPageNum) {
+      const oneElem = ((activePage - 1) * elementsOnPageNum);
+      newArr = oldArr.splice(oneElem, elementsOnPageNum);
 
       return newArr;
     }
@@ -35,7 +38,7 @@ const UsersList:FC = () => {
     return oldArr;
   }
 
-  const renderList = getPartList().map((el:any) => <UserPreview id={el.id} name={el.name} age={el.age} key={el.id} />);
+  const renderList = usersList ? getPartList().map((el) => <UserPreview id={el.id} name={el.name} age={el.age} key={el.id} />) : [];
 
   return (
     <ul className={styles.usersList}>
