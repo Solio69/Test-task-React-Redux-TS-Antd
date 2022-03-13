@@ -3,16 +3,16 @@
 /* eslint-disable no-param-reassign */
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IUser } from '../../../types/types';
-import ModalEdit from '../../form/modal/ModalEdit';
-import { fetchGetUsers } from '../../../store/users/usersActions';
-import { randomInteger } from '../../../utils';
-import { changesUserData } from '../../../store/users/usersSlise';
-import { useAppSelector, useAppDispatch } from '../../../store/hooks/redux';
-import { apiService } from '../../../services/apiService';
+import { IUser } from '../../types/types';
+import ModalEdit from '../form/modal/ModalEdit';
+import { fetchGetUsers } from '../../store/users/usersActions';
+import { randomInteger } from '../../utils';
+import { changesUserData } from '../../store/users/usersSlise';
+import { useAppSelector, useAppDispatch } from '../../store/hooks/redux';
+import { apiService } from '../../services/apiService';
 import styles from './UserPreview.module.scss';
 import 'antd/es/modal/style/css';
-import ButtonInUserPreview, { ButtonInUserPreviewVariant } from '../../buttons/button-in-userPreview/ButtonInUserPreview';
+import ButtonInUserPreview, { ButtonInUserPreviewVariant } from '../buttons/button-in-userPreview/ButtonInUserPreview';
 
 interface UserPreviewProps {
   id:string,
@@ -43,8 +43,10 @@ const UserPreview:FC<UserPreviewProps> = ({ id, name, age }) => {
 
   const updateUserData = (value:{ age:number, name:string }) => {
     if (value.age !== age || value.name !== name) {
-      const newObj = value;
-
+      const newObj = {
+        age: Number(value.age),
+        name: value.name,
+      };
       // запрос на сервер на изменение данный пользоватлея
       apiService.putUserUpdate(id, newObj)
         .then((res:IUser) => {

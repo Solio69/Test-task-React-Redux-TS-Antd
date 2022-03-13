@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from '../pages/home';
-import UserFull from '../components/user/user-full';
+import UserFull from '../components/user-full';
 
 const App:FC = () => (
   <Router>

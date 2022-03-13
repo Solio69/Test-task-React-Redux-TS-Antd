@@ -10,7 +10,8 @@ interface InitialStateTypes {
   isSorting:'sortUp' | 'sortDown' | '',
   maxPages:number,
   activePage:number,
-  elementsOnPage:string
+  elementsOnPage:string,
+  isLoading:boolean
 }
 
 const initialState: InitialStateTypes = {
@@ -20,6 +21,7 @@ const initialState: InitialStateTypes = {
   maxPages: 0,
   activePage: 1,
   elementsOnPage: '5',
+  isLoading: true,
 };
 
 export const usersSlise = createSlice({
@@ -54,10 +56,12 @@ export const usersSlise = createSlice({
 
   extraReducers: {
     [fetchGetUsers.pending.type]: (state) => {
+      state.isLoading = true;
     },
 
     [fetchGetUsers.fulfilled.type]: (state, action) => {
       state.usersList = action.payload;
+      state.isLoading = false;
       const lenghtList = action.payload.length;
       // если elementsOnPage приводится к числу, то считает максимальное кол-во страниц
       const elementsOnPage = (Number(state.elementsOnPage));
@@ -69,6 +73,7 @@ export const usersSlise = createSlice({
 
     [fetchGetUsers.rejected.type]: (state, action) => {
       // console.log('rejected', action.payload)
+      state.isLoading = false;
     },
   },
 });

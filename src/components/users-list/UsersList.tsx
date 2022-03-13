@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC } from 'react';
 import { useAppSelector } from '../../store/hooks/redux';
-import UserPreview from '../user/user-preview';
+import UserPreview from '../user-preview';
 import styles from './UsersList.module.scss';
 
 const UsersList:FC = () => {

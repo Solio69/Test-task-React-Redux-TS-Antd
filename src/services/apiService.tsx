@@ -1,9 +1,7 @@
-import { IUser } from '../types/types';
-
 class ApiService {
   baseStr = 'https://621c7b30768a4e1020ab3244.mockapi.io/api';
 
-  async putUserUpdate (id:string, newUserData:IUser) {
+  async putUserUpdate (id:string, newUserData:{ age:number, name:string }) {
     const body = {
       age: newUserData.age,
       name: newUserData.name,
