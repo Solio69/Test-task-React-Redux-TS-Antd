@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, ChangeEvent } from 'react';
 import { Input } from 'antd';
-import { useAppDispatch } from '../../store/hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import { changeSearchStr } from '../../store/users/usersSlise';
 import styles from './AntInput.module.scss';
 import 'antd/es/input/style/css';
 
 const AntInput:FC = () => {
   const dispath = useAppDispatch();
+  const {
+    searchStr, elementsOnPage, isLoading,
+  } = useAppSelector((state) => state.usersReduser);
 
   // получит значение из input и передаст его в stor redux
   const onChange = (event:ChangeEvent<HTMLInputElement>):void => {
@@ -22,6 +25,7 @@ const AntInput:FC = () => {
         placeholder="Search by name"
         onChange={onChange}
         className={styles['ant-input']}
+        defaultValue={searchStr}
       />
     </div>
 

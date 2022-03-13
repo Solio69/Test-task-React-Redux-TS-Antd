@@ -14,7 +14,7 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks/redux';
 const HomePage:FC = () => {
   const dispath = useAppDispatch();
   const {
-    searchStr, elementsOnPage, isLoading,
+    searchStr, elementsOnPage, isLoading, usersList,
   } = useAppSelector((state) => state.usersReduser);
 
   // action creator
@@ -24,9 +24,9 @@ const HomePage:FC = () => {
 
   const loader = isLoading ? <Loader /> : null;
   const input = <AntInput />;
-  const list = !isLoading ? <UsersList /> : null;
-  const sorting = !isLoading ? <Sorting /> : null;
-  const pagination = !isLoading ? <AntPagination /> : null;
+  const list = !isLoading && usersList.length ? <UsersList /> : null;
+  const sorting = !isLoading && usersList.length ? <Sorting /> : null;
+  const pagination = !isLoading && usersList.length ? <AntPagination /> : null;
 
   useEffect(() => {
     debouncedDispathFetchGetUsers();
