@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
 import React, { FC, useState } from 'react';

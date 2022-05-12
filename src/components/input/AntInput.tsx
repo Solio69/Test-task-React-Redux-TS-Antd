@@ -8,9 +8,7 @@ import 'antd/es/input/style/css';
 
 const AntInput:FC = () => {
   const dispath = useAppDispatch();
-  const {
-    searchStr, elementsOnPage, isLoading,
-  } = useAppSelector((state) => state.usersReduser);
+  const { searchStr } = useAppSelector((state) => state.usersReduser);
 
   // получит значение из input и передаст его в stor redux
   const onChange = (event:ChangeEvent<HTMLInputElement>):void => {

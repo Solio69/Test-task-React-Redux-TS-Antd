@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Solio69.github.io/Test-task-React-Redux-TS-Antd-",
+  "homepage": "http://Solio69.github.io/Test-task-React-Redux-TS-Antd",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@reduxjs/toolkit": "^1.8.0",

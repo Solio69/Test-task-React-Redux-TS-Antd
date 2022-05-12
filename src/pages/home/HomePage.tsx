@@ -19,6 +19,7 @@ const HomePage:FC = () => {
 
   // action creator
   const boundFetchGetUsers = () => dispath(fetchGetUsers(searchStr));
+
   // вызовет dispathFetchGetUsers с задержкой
   const debouncedDispathFetchGetUsers = debounce(boundFetchGetUsers, 500);
 
