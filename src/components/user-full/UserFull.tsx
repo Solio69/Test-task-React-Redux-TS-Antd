@@ -1,15 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC } from 'react';
-import styles from './UserFull.module.scss';
+// import styles from './UserFull.module.scss';
+import Plug from '../plug';
 
-const UserFull:FC = () => {
-  const test = 'UserFull';
-
-  return (
-    <div>
-      {test}
-    </div>
-  );
-};
-
+const UserFull:FC = () => (
+  <div>
+    <Plug />
+  </div>
+);
 export default UserFull;
